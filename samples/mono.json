@@ -1,0 +1,38 @@
+[
+    {
+        "vendeur": 3,
+        "libelle": "azrgeztgzeth",
+        "description": "zefazergaethzerthzrtnerynetyn",
+        "categorie": "Nourriture",
+        "prix_ht": "4785",
+        "prix_ttc": "5742",
+        "note_produit": null,
+        "url_image1": "/img/produit/49/1.jpg",
+        "url_image2": "/img/produit/49/2.jpg",
+        "url_image3": "/img/produit/49/3.jpg"
+    },
+    {
+        "vendeur": 3,
+        "libelle": "faergzetbjbztejbuzrtbj bozo",
+        "description": "zaergzergzerghzetkgzjeruivjziuerg ",
+        "categorie": "Boisson",
+        "prix_ht": "4785",
+        "prix_ttc": "5742",
+        "note_produit": null,
+        "url_image1": "/img/produit/50/1.jpg",
+        "url_image2": "/img/produit/50/2.jpg",
+        "url_image3": "/img/produit/50/3.jpg"
+    },
+    {
+        "vendeur": 3,
+        "libelle": "patate chaude",
+        "description": "super patate qui explose",
+        "categorie": "Nourriture",
+        "prix_ht": "50",
+        "prix_ttc": "55",
+        "note_produit": null,
+        "url_image1": false,
+        "url_image2": false,
+        "url_image3": false
+    }
+]
