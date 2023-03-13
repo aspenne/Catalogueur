@@ -1,10 +1,10 @@
 <?php 
 
 // get the json file
-if (file_exists('../samples/mono.json')) {
-    $data = file_get_contents('../samples/mono.json');
+if (file_exists('scripts/mono.json')) {
+    $data = file_get_contents('scripts/mono.json');
 } else {
-    $data = file_get_contents('../samples/multi.json');
+    $data = file_get_contents('scripts/multi.json');
 }
 
 // decode the json
@@ -15,6 +15,34 @@ $json_tab_seller_info = $json_tab['sellers'];
 
 // get the article info
 $json_tab_article = $json_tab['article'];
+
+$sellers_page = count($json_tab_seller_info);
+
+$articles_count_temp = count($json_tab_article);
+$articles_count = 1;
+
+// count articles in json_tab[article] with different sellers
+for ($i=0; $i < $articles_count_temp-1; $i++) { 
+    if ($json_tab_article[$i]['vendeur'] != $json_tab_article[$i+1]['vendeur']) {
+        $articles_count++;
+    }
+}
+
+$articles_page = $articles_count;
+
+// count number of articles pages
+if ( $articles_count_temp > 4){
+    for ($i=0; $i < $articles_count_temp-4; $i++) {
+        if ($json_tab_article[$i]['vendeur'] == $json_tab_article[$i+1]['vendeur'] &&
+        $json_tab_article[$i+1]['vendeur'] == $json_tab_article[$i+2]['vendeur'] &&
+        $json_tab_article[$i+2]['vendeur'] == $json_tab_article[$i+3]['vendeur'] ) {
+            $articles_page++;
+            $i = $i + 4;
+        }
+    }
+}
+
+$total_page = $sellers_page + $articles_page;
 
 ?>
 
@@ -72,7 +100,7 @@ $json_tab_article = $json_tab['article'];
 			
 		</article>
 		<div class="bottom"> 
-			<p> Page <?php echo $page ?> / 4</p>
+			<p> Page <?php echo $page ?> / <?php echo $total_page ?></p>
 		</div>
 	</section>
     <?php $page++; ?>
@@ -99,7 +127,7 @@ $json_tab_article = $json_tab['article'];
 		</article>
         <?php if ($nb_article % 4 == 0){ ?>
                 <div class="bottom">
-                    <p> Page <?php echo $page ?> / 4</p>
+                    <p> Page <?php echo $page ?> / <?php echo $total_page ?></p>
                     <?php $page++; ?>
                 </div>
             </section> 
@@ -109,7 +137,7 @@ $json_tab_article = $json_tab['article'];
     print($nb_article);
     if ($nb_article % 4 != 0){ ?>
         <div class="bottom">
-            <p> Page <?php echo $page ?> / 4</p>
+            <p> Page <?php echo $page ?> / <?php echo $total_page ?></p>
             <?php $page++; ?>
         </div>
     </section> <?php } ?>
