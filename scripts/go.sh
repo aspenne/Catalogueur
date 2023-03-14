@@ -9,6 +9,9 @@ docker image pull bigpapoo/sae4-html2pdf
 docker image pull bigpapoo/sae4-php  
 
 docker container run --rm -ti -v /Docker/aspen:/work bigpapoo/sae4-php php scripts/builder.php > /Docker/aspen/multi.html
+
+mv /Docker/aspen/scripts/builder.css /Docker/aspen/builder.css
+
 docker container run --rm -ti -v /Docker/aspen:/work bigpapoo/sae4-html2pdf "html2pdf multi.html multi.pdf"
 
-mv /Docker/aspen/multi.html ../samples/multi.pdf
+mv /Docker/aspen/multi.pdf ../samples/multi.pdf
