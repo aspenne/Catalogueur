@@ -134,7 +134,6 @@ $total_page = $sellers_page + $articles_page;
             <?php } 
         }  
     }
-    print($nb_article);
     if ($nb_article % 4 != 0){ ?>
         <div class="bottom">
             <p> Page <?php echo $page ?> / <?php echo $total_page ?></p>
