@@ -9,16 +9,15 @@ docker image pull bigpapoo/sae4-html2pdf
 docker image pull bigpapoo/sae4-php  
 
 # docker build -t alizon-website ../../
-# docker build -t catalogueur ../
 
-# docker network create alizon-network
+docker build -t catalogueur ../
 
-# docker run -d --rm --name alizon-container --network alizon-network alizon-website
-# docker run -d --rm --name catalogueur-container  --network alizon-network catalogueur
+docker network create alizon-network
 
-# docker container ls -a
-# docker network inspect alizon-network 
-# docker container ls -a
+docker network connect alizon-network Alizon
+
+docker run --name Catalogueur catalogueur
+docker network connect alizon-network Catalogueur
 
 mv /Docker/aspen/scripts/builder.css /Docker/aspen/builder.css
 
@@ -38,5 +37,4 @@ rm  /Docker/aspen/builder.css
 rm /Docker/aspen/multi.html
 rm /Docker/aspen/mono.html
 
-# docker container rm alizon-website
-# docker container rm catalogueur
+docker container kill Catalogueur
