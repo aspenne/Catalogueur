@@ -10,13 +10,17 @@ if (file_exists('scripts/mono.json')) {
 // decode the json
 $json_tab = json_decode($data, true);
 
-// get the seller info
-$json_tab_seller_info = $json_tab['sellers'];
 
 // get the article info
 $json_tab_article = $json_tab['article'];
 
-$sellers_page = count($json_tab_seller_info);
+if (file_exists('scripts/multi.json')) {
+    $json_tab_seller_info = $json_tab['sellers'];
+    $sellers_page = count($json_tab_seller_info); 
+} else {
+    $json_tab_seller_info = $json_tab['sellers'][0];
+    $sellers_page = 1;
+}
 
 $articles_count_temp = count($json_tab_article);
 $articles_count = 1;
@@ -59,55 +63,130 @@ $total_page = $sellers_page + $articles_page;
 <body>
     <?php
     $page = 1;
-    foreach ($json_tab_seller_info as $key_seller => $value_seller) {
-        $note = $value_seller['note_vendeur'];
-        $stars_full = floor($note);
-        $stars_half = round($note - $stars_full);
-    ?>
-    <section class="seller-page">
-		<div class="name-rate">
-			<h1> <?php echo $value_seller['nom_vendeur'] ?> </h1>
-			<div class="name-rate">
-            <?php for ($i = 1; $i <= 5; $i++) {
-                if ($i <= $stars_full) {
-                    ?><i class="fa-solid fa-star"></i><?php
-                } else if ($i == $stars_full + 1 && $stars_half > 0) {
-                    ?><i class="fa-solid fa-star-half-stroke"></i><?php
-                } else {
-                    ?><i class="far fa-star"></i><?php
-                }
-            } ?>
+    if ( $sellers_page == 1 ) { ?>
+        <section class="seller-page">
+            <div class="name-rate">
+                <h1> <?php echo $json_tab_seller_info['nom_vendeur'] ?> </h1>
+                <div class="name-rate">
+                <?php for ($i = 1; $i <= 5; $i++) {
+                    if ($i <= $json_tab_seller_info['note_vendeur']) {
+                        ?><i class="fa-solid fa-star"></i><?php
+                    } else if ($i == $stars_full + 1 && $stars_half > 0) {
+                        ?><i class="fa-solid fa-star-half-stroke"></i><?php
+                    } else {
+                        ?><i class="far fa-star"></i><?php
+                    }
+                } ?>
+                </div>
             </div>
-		</div>
-		<div class="logo">
-			<img src="<?php echo $value_seller['url_logo']?>" alt="Logo du vendeur">
-		</div>
-		<article class="bottom-page">
-			<article class="presentation-text">
-				<h2> Présentation du Vendeur </h2>
-				<p> <?php $value_seller['presentation']?></p>
-			</article>
-			<div class="about-seller">
-				<article class="about1">
-					<p class="siret"> <b>SIRET</b> <?php echo $value_seller['siret']?> </p>
-					<p class="tva"> <b>TVA</b> <?php echo $value_seller['tva_intracommunautaire']?></p>
-				</article>
-				<article class="about2">
-					<p class="contact"> <b>Contact	</b> <?php echo $value_seller['mail_vendeur'] ?></p>
-					<p class="adresse"> <b>Adresse</b> <?php echo $value_seller['adresse_postale'] ?> </p>
-				</article>
-			</div>
-			
-		</article>
-		<div class="bottom"> 
-			<p> Page <?php echo $page ?> / <?php echo $total_page ?></p>
-		</div>
-	</section>
-    <?php $page++; ?>
+            <div class="logo">
+                <img src="<?php echo $json_tab_seller_info['url_logo']?>" alt="Logo du vendeur">
+            </div>
+            <article class="bottom-page">
+                <article class="presentation-text">
+                    <h2> Présentation du Vendeur </h2>
+                    <p> <?php echo $json_tab_seller_info['presentation']?></p>
+                </article>
+                <div class="about-seller">
+                    <article class="about1">
+                        <p class="siret"> <b>SIRET</b> <?php echo $json_tab_seller_info['siret']?> </p>
+                        <p class="tva"> <b>TVA</b> <?php echo $json_tab_seller_info['tva_intracommunautaire']?></p>
+                    </article>
+                    <article class="about2">
+                        <p class="contact"> <b>Contact	</b> <?php echo $json_tab_seller_info['mail_vendeur'] ?></p>
+                        <p class="adresse"> <b>Adresse</b> <?php echo $json_tab_seller_info['adresse_postale'] ?> </p>
+                    </article>
+                </div>
+                
+            </article>
+            <div class="bottom"> 
+                <p> Page <?php echo $page ?> / <?php echo $total_page ?></p>
+            </div>
+        </section>
     <?php 
     $nb_article = 0;
     foreach ($json_tab_article as $key_article => $value_article) {
-        if ($value_article['vendeur'] == $key_seller) { // if the article is from the seller
+            if ($nb_article % 4 == 0) { ?>
+                <section class="product-list">
+            <?php } $nb_article++;?>
+            <article class="product">
+			<div class="product-image">
+				<h3> <?php $value_article['libelle'] ?> </h2>
+				<img src="<?php echo $value_article['url_image1']?>" alt="Image du produit <?php echo $nb_article ?>">
+			</div>
+			<div class="product-info">
+				<p> <?php echo $value_article['description'] ?> </p>
+			</div>
+			<div class="product-price">
+				<p class="price-ttc">Prix TTC: <?php echo $value_article['prix_ttc'] ?> €</p>
+				<p class="price-ht">Prix HT: <?php echo $value_article['prix_ht'] ?> €</p>
+			</div>
+		</article>
+        <?php if ($nb_article % 4 == 0){ ?>
+                <div class="bottom">
+                    <?php $page++; ?>
+                    <p> Page <?php echo $page ?> / <?php echo $total_page ?></p>
+                </div>
+            </section> 
+            <?php } 
+        }  
+    if ($nb_article % 4 != 0){ ?> // if the last page is not full
+        <div class="bottom">
+            <?php $page++; ?>
+            <p> Page <?php echo $page ?> / <?php echo $total_page ?></p>
+        </div>
+    </section> <?php } ?>
+    <?php } else { 
+        $page = 1;
+        foreach ($json_tab_seller_info as $key_seller => $value_seller) {
+            $note = $value_seller['note_vendeur'];
+            $stars_full = floor($note);
+            $stars_half = round($note - $stars_full);
+        ?>
+        <section class="seller-page">
+            <div class="name-rate">
+                <h1> <?php echo $value_seller['nom_vendeur'] ?> </h1>
+                <div class="name-rate">
+                <?php for ($i = 1; $i <= 5; $i++) {
+                    if ($i <= $stars_full) {
+                        ?><i class="fa-solid fa-star"></i><?php
+                    } else if ($i == $stars_full + 1 && $stars_half > 0) {
+                        ?><i class="fa-solid fa-star-half-stroke"></i><?php
+                    } else {
+                        ?><i class="far fa-star"></i><?php
+                    }
+                } ?>
+                </div>
+            </div>
+            <div class="logo">
+                <img src="<?php echo $value_seller['url_logo']?>" alt="Logo du vendeur">
+            </div>
+            <article class="bottom-page">
+                <article class="presentation-text">
+                    <h2> Présentation du Vendeur </h2>
+                    <p> <?php echo $value_seller['presentation']?></p>
+                </article>
+                <div class="about-seller">
+                    <article class="about1">
+                        <p class="siret"> <b>SIRET</b> <?php echo $value_seller['siret']?> </p>
+                        <p class="tva"> <b>TVA</b> <?php echo $value_seller['tva_intracommunautaire']?></p>
+                    </article>
+                    <article class="about2">
+                        <p class="contact"> <b>Contact	</b> <?php echo $value_seller['mail_vendeur'] ?></p>
+                        <p class="adresse"> <b>Adresse</b> <?php echo $value_seller['adresse_postale'] ?> </p>
+                    </article>
+                </div>
+                
+            </article>
+            <div class="bottom"> 
+                <p> Page <?php echo $page ?> / <?php echo $total_page ?></p>
+            </div>
+        </section>
+        <?php $page++; ?>
+    <?php 
+    $nb_article = 0;
+    foreach ($json_tab_article as $key_article => $value_article) {
+        if ($value_article['vendeur'] == $value_seller['id_vendeur']) { // if the article is from the seller
             if ($nb_article % 4 == 0){ ?>
                 <section class="product-list">
             <?php } ?>
@@ -134,12 +213,12 @@ $total_page = $sellers_page + $articles_page;
             <?php } 
         }  
     }
-    if ($nb_article % 4 != 0){ ?>
+    if ($nb_article % 4 != 0){  // if the last page is not full ?>
         <div class="bottom">
             <p> Page <?php echo $page ?> / <?php echo $total_page ?></p>
             <?php $page++; ?>
         </div>
     </section> <?php } ?>
-    <?php } ?>
+    <?php } } ?>
 </body>
 </html>
