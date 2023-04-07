@@ -1,40 +1,29 @@
 #!/bin/bash
 
-cp -r ../modele/ /Docker/aspen/
-cp -r ../scripts/ /Docker/aspen/
-cp -r ../samples/multi.json /Docker/aspen/scripts
-cp -r ../samples/mono.json /Docker/aspen/scripts
+username=$(whoami)
+
+cp -r ../modele/ /Docker/$username/
+cp -r ../scripts/ /Docker/$username/
+cp -r ../samples/multi.json /Docker/$username/scripts
+cp -r ../samples/mono.json /Docker/$username/scripts
 
 docker image pull bigpapoo/sae4-html2pdf
 docker image pull bigpapoo/sae4-php  
 
-# docker build -t alizon-website ../../
+mv /Docker/$username/scripts/builder.css /Docker/$username/builder.css
 
-docker build -t catalogueur ../
-
-docker network create alizon-network
-
-docker network connect alizon-network Alizon
-
-docker run --name Catalogueur catalogueur
-docker network connect alizon-network Catalogueur
-
-mv /Docker/aspen/scripts/builder.css /Docker/aspen/builder.css
-
-if [ -f /Docker/aspen/scripts/multi.json ]; then
-    docker container run --rm -ti -v /Docker/aspen:/work bigpapoo/sae4-php php scripts/builder.php > /Docker/aspen/multi.html
-    docker container run --rm -ti -v /Docker/aspen:/work bigpapoo/sae4-html2pdf "html2pdf multi.html multi.pdf"
-    mv /Docker/aspen/multi.pdf ../samples/multi.pdf
+if [ -f /Docker/$username/scripts/multi.json ]; then
+    docker container run --rm -ti -v /Docker/$username:/work bigpapoo/sae4-php php scripts/builder.php > /Docker/$username/multi.html
+    docker container run --rm -ti -v /Docker/$username:/work bigpapoo/sae4-html2pdf "html2pdf multi.html multi.pdf"
+    mv /Docker/$username/multi.pdf ../samples/multi.pdf
 else
-    docker container run --rm -ti -v /Docker/aspen:/work bigpapoo/sae4-php php scripts/builder.php > /Docker/aspen/mono.html
-    docker container run --rm -ti -v /Docker/aspen:/work bigpapoo/sae4-html2pdf "html2pdf mono.html mono.pdf"
-    mv /Docker/aspen/mono.pdf ../samples/mono.pdf
+    docker container run --rm -ti -v /Docker/$username:/work bigpapoo/sae4-php php scripts/builder.php > /Docker/$username/mono.html
+    docker container run --rm -ti -v /Docker/$username:/work bigpapoo/sae4-html2pdf "html2pdf mono.html mono.pdf"
+    mv /Docker/$username/mono.pdf ../samples/mono.pdf
 fi
 
-rm -r /Docker/aspen/scripts
-rm -r /Docker/aspen/modele
-rm  /Docker/aspen/builder.css
-rm /Docker/aspen/multi.html
-rm /Docker/aspen/mono.html
-
-docker container kill Catalogueur
+rm -r /Docker/$username/scripts
+rm -r /Docker/$username/modele
+rm  /Docker/$username/builder.css
+rm /Docker/$username/multi.html
+rm /Docker/$username/mono.html
