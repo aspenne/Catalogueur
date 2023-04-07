@@ -1,0 +1,126 @@
+{
+    "sellers": [
+        {
+            "id_vendeur": 1,
+            "nom_vendeur": "Cobrec",
+            "raison_sociale": "Cobrec corporation",
+            "mail_vendeur": "cobrec.alizon@gmail.com",
+            "adresse_postale": "1 Rue du commerce 22000 St-Brieuc",
+            "tva_intracommunautaire": "FR53157896342",
+            "siret": "12356894100056",
+            "presentation": "une boutique remplie de bon produit",
+            "note_vendeur": "4.5",
+            "url_logo": "/Regalouzz/img/logo_vendeur/1/1.png"
+        },
+        {
+            "id_vendeur": 2,
+            "nom_vendeur": "Autre Vendeur",
+            "raison_sociale": "other seller",
+            "mail_vendeur": "blablabla@gmail.com",
+            "adresse_postale": "6 Rue des tours 22000 St-Brieuc",
+            "tva_intracommunautaire": "FR54747694241",
+            "siret": "65473453887345",
+            "presentation": "Une boutique remplie de moins bon Produit",
+            "note_vendeur": "4.5",
+            "url_logo": "/Regalouzz/img/logo_vendeur/2/1.png"
+        },
+        {
+            "id_vendeur": 3,
+            "nom_vendeur": "axel",
+            "raison_sociale": "axel corporation",
+            "mail_vendeur": "axel@gmail.com",
+            "adresse_postale": "8 Rue des tours 22000 St-Brieuc",
+            "tva_intracommunautaire": "FR64747694241",
+            "siret": "65473453887345",
+            "presentation": "Une boutique de Produit",
+            "note_vendeur": "4.5",
+            "url_logo": "/Regalouzz/img/logo_vendeur/3/1.png"
+        }
+    ],
+    "article": [
+        {
+            "vendeur": 1,
+            "libelle": "Breizh Cola",
+            "description": "La recette originale, créée en 2002. Son secret ? Un dosage parfait des ingrédients, lui donnant de fines bulles. Un gout plébiscité par les consommateurs depuis 20 ans !",
+            "categorie": "Boisson",
+            "prix_ht": "30",
+            "prix_ttc": "36",
+            "note_produit": null,
+            "url_image1": "/img/produit/10/1.jpg",
+            "url_image2": null,
+            "url_image3": null
+        },
+        {
+            "vendeur": 1,
+            "libelle": "Crêpes au Sucre",
+            "description": "Les crépes bretonnes font entiérement partie de l'histoire de la bretagne, a déguster salé ou sucré, elles restent incontournable. Elles sont faite a base de farine, oeuf, sucre et beure, et conféctionné dans un bilig.",
+            "categorie": "Nourriture",
+            "prix_ht": "30",
+            "prix_ttc": "36",
+            "note_produit": null,
+            "url_image1": "/img/produit/4/1.jpg",
+            "url_image2": null,
+            "url_image3": null
+        },
+        {
+            "vendeur": 1,
+            "libelle": "Moule",
+            "description": "Moules de Bouchot directement issues de la baie de Saint-Brieuc, prêtes pour la cuisson. Peuvent se déguster de plusieurs façons, comme à la Bretonne, au Curry ou encore Marinières. Contient environ 1KG de moules.",
+            "categorie": "Nourriture",
+            "prix_ht": "30",
+            "prix_ttc": "36",
+            "note_produit": null,
+            "url_image1": "/img/produit/7/1.jpg",
+            "url_image2": null,
+            "url_image3": null
+        },
+        {
+            "vendeur": 1,
+            "libelle": "Petit Beurre",
+            "description": "Le petit beurre est l'un des gâteaux le plus connu des français, notamment des bretons. Il est principalement fait de beurre et de lait. Il mesure 65 mm de long, 54 mm de large et 6,5 mm d'épaisseur pour un poids unitaire de 8,33 g. Vendu par paquet de 16",
+            "categorie": "Nourriture",
+            "prix_ht": "10",
+            "prix_ttc": "11",
+            "note_produit": null,
+            "url_image1": "/img/produit/1/1.jpg",
+            "url_image2": null,
+            "url_image3": null
+        },
+        {
+            "vendeur": 1,
+            "libelle": "Pomme",
+            "description": "Un sac de pomme venant tout droit du Verger du Menez, nos pommes sont BIO et produites dans le respect de la nature et de l'environnement.",
+            "categorie": "Nourriture",
+            "prix_ht": "5",
+            "prix_ttc": "6",
+            "note_produit": null,
+            "url_image1": "/img/produit/8/1.jpg",
+            "url_image2": null,
+            "url_image3": null
+        },
+        {
+            "vendeur": 2,
+            "libelle": "Haribo",
+            "description": "Avec leurs textures tendres, leurs couleurs vives et leur goûts uniques, les adorables bonbons ours HARIBO sont une valeur sûre. Faites-vous plaisir et partager ces savoureux bonbons avec vos proches.",
+            "categorie": "Nourriture",
+            "prix_ht": "1.5",
+            "prix_ttc": "1.8",
+            "note_produit": null,
+            "url_image1": "/img/produit/9/1.jpg",
+            "url_image2": null,
+            "url_image3": null
+        },
+        {
+            "vendeur": 3,
+            "libelle": "Crêpes au Nutella",
+            "description": "Les crépes bretonnes font entiérement partie de l'histoire de la bretagne, a déguster salé ou sucré, elles restent incontournable. Elles sont faite a base de farine, oeuf, sucre et beure, et conféctionné dans un bilig.",
+            "categorie": "Nourriture",
+            "prix_ht": "30",
+            "prix_ttc": "36",
+            "note_produit": null,
+            "url_image1": "/img/produit/3/1.jpg",
+            "url_image2": null,
+            "url_image3": null
+        }
+    ]
+}

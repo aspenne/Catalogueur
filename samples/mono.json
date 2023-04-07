@@ -1,38 +1,54 @@
-[
-    {
-        "vendeur": 3,
-        "libelle": "azrgeztgzeth",
-        "description": "zefazergaethzerthzrtnerynetyn",
-        "categorie": "Nourriture",
-        "prix_ht": "4785",
-        "prix_ttc": "5742",
-        "note_produit": null,
-        "url_image1": "/img/produit/49/1.jpg",
-        "url_image2": "/img/produit/49/2.jpg",
-        "url_image3": "/img/produit/49/3.jpg"
-    },
-    {
-        "vendeur": 3,
-        "libelle": "faergzetbjbztejbuzrtbj bozo",
-        "description": "zaergzergzerghzetkgzjeruivjziuerg ",
-        "categorie": "Boisson",
-        "prix_ht": "4785",
-        "prix_ttc": "5742",
-        "note_produit": null,
-        "url_image1": "/img/produit/50/1.jpg",
-        "url_image2": "/img/produit/50/2.jpg",
-        "url_image3": "/img/produit/50/3.jpg"
-    },
-    {
-        "vendeur": 3,
-        "libelle": "patate chaude",
-        "description": "super patate qui explose",
-        "categorie": "Nourriture",
-        "prix_ht": "50",
-        "prix_ttc": "55",
-        "note_produit": null,
-        "url_image1": false,
-        "url_image2": false,
-        "url_image3": false
-    }
-]
+{
+    "seller": [
+        {
+            "id_vendeur": 1,
+            "nom_vendeur": "Cobrec",
+            "raison_sociale": "Cobrec corporation",
+            "mail_vendeur": "cobrec.alizon@gmail.com",
+            "adresse_postale": "1 Rue du commerce 22000 St-Brieuc",
+            "tva_intracommunautaire": "FR53157896342",
+            "siret": "12356894100056",
+            "presentation": "une boutique remplie de bon produit",
+            "note_vendeur": "4.5",
+            "url_logo": "/Regalouzz/img/logo_vendeur/1/1.png"
+        }
+    ],
+    "article": [
+        {
+            "vendeur": 1,
+            "libelle": "Crêpes au Sucre",
+            "description": "Les crépes bretonnes font entiérement partie de l'histoire de la bretagne, a déguster salé ou sucré, elles restent incontournable. Elles sont faite a base de farine, oeuf, sucre et beure, et conféctionné dans un bilig.",
+            "categorie": "Nourriture",
+            "prix_ht": "30",
+            "prix_ttc": "36",
+            "note_produit": null,
+            "url_image1": "/img/produit/4/1.jpg",
+            "url_image2": null,
+            "url_image3": null
+        },
+        {
+            "vendeur": 1,
+            "libelle": "Moule",
+            "description": "Moules de Bouchot directement issues de la baie de Saint-Brieuc, prêtes pour la cuisson. Peuvent se déguster de plusieurs façons, comme à la Bretonne, au Curry ou encore Marinières. Contient environ 1KG de moules.",
+            "categorie": "Nourriture",
+            "prix_ht": "30",
+            "prix_ttc": "36",
+            "note_produit": null,
+            "url_image1": "/img/produit/7/1.jpg",
+            "url_image2": null,
+            "url_image3": null
+        },
+        {
+            "vendeur": 1,
+            "libelle": "Petit Beurre",
+            "description": "Le petit beurre est l'un des gâteaux le plus connu des français, notamment des bretons. Il est principalement fait de beurre et de lait. Il mesure 65 mm de long, 54 mm de large et 6,5 mm d'épaisseur pour un poids unitaire de 8,33 g. Vendu par paquet de 16",
+            "categorie": "Nourriture",
+            "prix_ht": "10",
+            "prix_ttc": "11",
+            "note_produit": null,
+            "url_image1": "/img/produit/1/1.jpg",
+            "url_image2": null,
+            "url_image3": null
+        }
+    ]
+}
